@@ -18,6 +18,9 @@ RUN	git clone $GIT_COIN_URL $GIT_COIN_NAME \
 
 FROM chainmapper/walletbase-xenial as runtime
 
+RUN apt-get -y update \
+	&& apt-get -y install libdb++-dev
+
 COPY --from=builder /usr/local/bin /usr/local/bin
 RUN mkdir /data
 ENV HOME /data
